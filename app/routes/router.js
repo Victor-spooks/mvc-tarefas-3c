@@ -136,5 +136,21 @@ router.post(
     }
 );
 
+router.post("/excluir", async (req, res) => {
+    const id = parseInt(req.body.id, 10);
+
+    if (isNaN(id)) {
+        return res.status(400).send("ID inválido");
+    }
+
+    try {
+        await tarefasModel.deleteById(id);
+        res.redirect("/");
+    } catch (erro) {
+        console.log(erro);
+        res.status(500).send("Erro ao excluir tarefa");
+    }
+});
+
 module.exports = router;
 

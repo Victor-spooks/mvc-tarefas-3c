@@ -26,36 +26,38 @@
                 <th>Ações</th>
             </tr>
         </thead>
- <tbody>
-<% 
-if (linhasTabela && linhasTabela.length > 0) { 
+        <tbody>
+            <% if (linhasTabela && linhasTabela.length> 0) {
 
-    let situacoes = ["Cancelada", "Pendente", "Iniciada", "Finalizada", "Em Atraso"];
+                let situacoes = ["Cancelada", "Pendente", "Iniciada", "Finalizada", "Em Atraso"];
 
-    linhasTabela.forEach(tarefa => { 
-%>
-    <tr>
-        <td><%= tarefa.id_tarefa %></td>
-        <td><%= tarefa.nome_tarefa %></td>
-        <td><%= moment(tarefa.prazo_tarefa).format("DD/MM/YYYY") %></td>
+                linhasTabela.forEach(tarefa => {
+                %>
+                <tr>
+                    <td>
+                        <%= tarefa.id_tarefa %>
+                    </td>
+                    <td>
+                        <%= tarefa.nome_tarefa %>
+                    </td>
+                    <td>
+                        <%= moment(tarefa.prazo_tarefa).format("DD/MM/YYYY") %>
+                    </td>
 
-        <td>
-            <%= situacoes[parseInt(tarefa.situacao_tarefa)] || "Desconhecido" %>
-        </td>
+                    <td>
+                        <%= situacoes[parseInt(tarefa.situacao_tarefa)] || "Desconhecido" %>
+                    </td>
 
-        <td>
-            <a href="/alterar?id=<%= tarefa.id_tarefa %>">Editar</a> |
-            <a href="/excluir?id=<%= tarefa.id_tarefa %>"
-               onclick="return confirm('Tem certeza que deseja excluir esta tarefa?')">
-               Excluir
-            </a>
-        </td>
-    </tr>
-<% 
-    }); 
-} 
-%>
-</tbody>
+                    <td>
+                        <a href="/alterar?id=<%= tarefa.id_tarefa %>">Editar</a> |
+                        <form action="/excluir" method="POST" style="display:inline;">
+                            <input type="hidden" name="id" value="<%= tarefa.id_tarefa %>">
+                            <button onclick="return confirm('Tem certeza?')">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); } %>
+        </tbody>
 
     </table>
 
