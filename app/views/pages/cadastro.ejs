@@ -36,15 +36,15 @@
             <option <%= selecionado[4] %> value="4">Em Atraso</option>
         </select><br><br>
 
-        <% if (typeof erros !== "undefined" && erros.length > 0) { %>
-        <div style="color: red;">
-            <ul>
-                <% erros.forEach(e => { %>
-                    <li><%= e.msg %></li>
-                <% }) %>
-            </ul>
-        </div>
-    <% } %>
+        <% if (listaErros && listaErros.length > 0) { %>
+    <div style="color: red;">
+        <ul>
+            <% listaErros.forEach(e => { %>
+                <li><%= e.msg %></li>
+            <% }) %>
+        </ul>
+    </div>
+<% } %>
 
         <button type="submit">Salvar</button>
 
