@@ -8,9 +8,14 @@ const { tarefasController } = require("../controllers/tarefasController");
 
 moment.locale('pt-br');
 
-router.get("/", async function (req, res) {
-    tarefasController.listarTarefas(req,res);
-    
-});
+router.get("/", tarefasController.listarTarefas);
+
+router.get("/cadastro", tarefasController.exibirCadastro);
+
+router.get("/alterar", tarefasController.exibirAlteracao);
+
+router.post("/cadastro", tarefasController.validarFormCad, tarefasController.salvarTarefa);
+
+router.post("/excluir", tarefasController.excluirTarefa);
 
 module.exports = router;
