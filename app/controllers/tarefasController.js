@@ -102,7 +102,7 @@ const tarefasController = {
         res.locals.moment = moment;
 
         const listaErros = validationResult(req);
-
+        
         const objJson = {
             id: parseInt(req.body.id || 0),
             nome: req.body.tarefa,
