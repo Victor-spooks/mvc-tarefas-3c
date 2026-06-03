@@ -12,12 +12,16 @@
     <h1><%= tituloPagina %></h1>
 
 
-    <%
+        <% if (listaErros) { %>
+    <div style="color: red;">
+        <ul>
+            <% listaErros.errors.forEach(e => { %>
+                <li><%= e.msg %></li>
+            <% }) %>
+        </ul>
+    </div>
+<% } %>
     
-
-
-    %>
-
 
     <form action="/cadastro" method="post">
 
@@ -43,15 +47,6 @@
             <option <%= selecionado[4] %> value="4">Em Atraso</option>
         </select><br><br>
 
-        <% if (listaErros && listaErros.length > 0) { %>
-    <div style="color: red;">
-        <ul>
-            <% listaErros.forEach(e => { %>
-                <li><%= e.msg %></li>
-            <% }) %>
-        </ul>
-    </div>
-<% } %>
 
         <button type="submit">Salvar</button>
 
